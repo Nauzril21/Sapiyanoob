@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Secret Birthday</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial;
+}
+
+html,body{
+height:100%;
+}
+
+body{
+min-height:100vh;
+overflow:hidden;
+background: radial-gradient(circle at 30% 20%, #1b1b3a, #0a0a1a 60%, #000000);
+color:white;
+text-align:center;
+}
+
+/* STARS */
+
+.stars{
+position:fixed;
+width:100%;
+height:100%;
+top:0;
+left:0;
+z-index:-1;
+}
+
+.stars span{
+position:absolute;
+width:2px;
+height:2px;
+background:white;
+animation:twinkle 3s infinite alternate;
+}
+
+@keyframes twinkle{
+from{opacity:0.2}
+to{opacity:1}
+}
+
+/* PAGE */
+
+.page{
+position:absolute;
+width:100%;
+height:100vh;
+display:none;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+padding:20px;
+}
+
+.active{
+display:flex;
+}
+
+/* BUBBLES */
+
+.bubbles span{
+position:absolute;
+bottom:-60px;
+background:#ff6ec7;
+border-radius:50%;
+animation:rise 15s linear infinite;
+opacity:0.5;
+}
+
+@keyframes rise{
+0%{transform:translateY(0) scale(0.5)}
+100%{transform:translateY(-120vh) scale(1.2)}
+}
+
+/* PASSWORD */
+
+.password-box{
+background:rgba(255,255,255,0.1);
+padding:40px;
+border-radius:20px;
+backdrop-filter:blur(10px);
+box-shadow:0 0 25px rgba(255,255,255,0.2);
+}
+
+input{
+padding:12px;
+border:none;
+border-radius:10px;
+margin-top:10px;
+font-size:18px;
+}
+
+button{
+margin-top:15px;
+padding:12px 25px;
+font-size:18px;
+border:none;
+border-radius:10px;
+cursor:pointer;
+background:#ff6ec7;
+color:white;
+transition:0.3s;
+}
+
+button:hover{
+transform:scale(1.1);
+}
+
+/* ROCKET */
+
+.rocket{
+font-size:90px;
+animation:rocketMove 2s infinite alternate;
+}
+
+@keyframes rocketMove{
+from{transform:translateY(0)}
+to{transform:translateY(-30px)}
+}
+
+/* CONFETTI */
+
+.confetti{
+position:absolute;
+width:10px;
+height:10px;
+background:yellow;
+top:-10px;
+animation:fall 4s linear infinite;
+}
+
+@keyframes fall{
+to{
+transform:translateY(110vh) rotate(360deg);
+}
+}
+
+/* QUESTION */
+
+#noBtn{
+position:absolute;
+}
+
+/* SNOOPY PAGE */
+
+.snoopy{
+background:linear-gradient(135deg,#ffb6c1,#ffd6ec,#fff);
+color:#333;
+overflow:auto;
+}
+
+/* PHOTO GRID */
+
+.photo-grid{
+position:relative;
+width:80%;
+height:60vh;
+}
+
+.photo{
+width:200px;
+border-radius:15px;
+box-shadow:0 0 20px rgba(0,0,0,0.4);
+}
+
+.p1{position:absolute;top:0;left:0;}
+.p2{position:absolute;top:0;right:0;}
+.p3{position:absolute;bottom:0;left:0;}
+.p4{position:absolute;bottom:0;right:0;}
+
+.center{
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+width:240px;
+border:4px solid white;
+}
+
+.snoopy-decor{
+position:absolute;
+bottom:20px;
+right:20px;
+width:120px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="stars" id="stars"></div>
+
+<div class="bubbles">
+<span style="left:10%;width:20px;height:20px"></span>
+<span style="left:25%;width:25px;height:25px"></span>
+<span style="left:40%;width:15px;height:15px"></span>
+<span style="left:60%;width:20px;height:20px"></span>
+<span style="left:75%;width:30px;height:30px"></span>
+<span style="left:90%;width:18px;height:18px"></span>
+</div>
+
+<!-- PASSWORD -->
+
+<div class="page active" id="page1">
+
+<div class="password-box">
+
+<h1>🔐 Secret Password</h1>
+<p>Only special people can enter</p>
+
+<input type="password" id="pass">
+
+<br>
+
+<button onclick="checkPass()">Enter</button>
+
+</div>
+
+</div>
+
+<!-- ROCKET -->
+
+<div class="page" id="page2">
+
+<div class="rocket">🚀</div>
+
+<h2>Please turn on the music 🎧</h2>
+
+<audio controls autoplay>
+<source src="yblue.mp3">
+</audio>
+
+<button onclick="nextPage(3)">Continue</button>
+
+</div>
+
+<!-- BIRTHDAY -->
+
+<div class="page" id="page3">
+
+<h1>🎂 Happy Birthday</h1>
+
+<h2>Beberes selamatt ulang tahunnn yaaaaaa</h2>
+
+<button onclick="nextPage(33)">Next</button>
+
+</div>
+
+<!-- MESSAGE -->
+
+<div class="page snoopy" id="page33">
+
+<img src="https://upload.wikimedia.org/wikipedia/en/5/53/Snoopy_Peanuts.png" width="150">
+
+<p style="max-width:700px;line-height:1.7;margin-top:20px">
+
+heyy sayang eh asal kamu tauu yaa ini akuu buat sendiri cok sumpah demi apapun yaa aku buat inii woyyy ga sepenuh nya sih di bantuin temen juga yang dari malay buat bantuin ajil PURE NOT AI OKEY PLIS AKU TAU AKU TERGANTUNGAN SAMA AI BUT IS NOT AI OKEY.
+
+dan yah aku bahagia banget bisa ketemu kamu bisa seneng seneng sampe sekarang ini kayak impian banget dan jujurly ini first time aku ngerayain yang bener bener sebesar ini.
+
+kayak yaa gatauuu sihh aku juga bakal sebesar apa tapi aku udah plan di jauh hari dan ini tanggal 6 maret aku ngurusin semua nya dari aku mikirin mau gimanaa inii ituu.
+
+akuu belakangan ini lagi kesel kesel nya gatau mungkin karna aku capeee ngurusin ini itu lah apalah pokoknya banyak banget walaupun aku ujian gitu ya aku tetep usahakan yang terbaik.
+
+dan part yang aku ga suka adalah dimana aku harus menunggu ini semua gitu dan asal kamu tau aku sudah mempersiapkan matang sematang nya mungkin semoga kamu suka ya.
+
+tapii gatau juga sih bakal gimana semoga rencana aku berhasil aminnnn.
+
+dan yaa tunggu yaa hadiah nyaa maaf kalo semisal nya nanti hadiah dari aku kurang atau gimana maafin okeyy.
+
+okee dah kamu next page dulu hihihi babay mwah 💗
+
+</p>
+
+<button onclick="nextPage(4)">Next</button>
+
+</div>
+
+<!-- QUESTION -->
+
+<div class="page" id="page4">
+
+<h1>Do you want to go out with me on the 11th?</h1>
+
+<button onclick="yesAnswer()">YES ❤️</button>
+
+<button id="noBtn">NO</button>
+
+</div>
+
+<!-- YES -->
+
+<div class="page" id="page5">
+
+<h1>OKAYYY THANK YOUUU ❤️</h1>
+
+<button onclick="nextPage(6)">Last Surprise</button>
+
+</div>
+
+<!-- PHOTO -->
+
+<div class="page snoopy" id="page6">
+
+<h1>My Favorite Photos Of You 💖</h1>
+
+<div class="photo-grid">
+
+<img src="zfoto1.jpg" class="photo p1">
+<img src="zfoto2.jpg" class="photo p2">
+<img src="zfoto3.jpg" class="photo p3">
+<img src="zfoto4.jpg" class="photo p4">
+<img src="zfoto5.jpg" class="photo center">
+
+</div>
+
+<img src="https://upload.wikimedia.org/wikipedia/en/5/53/Snoopy_Peanuts.png" class="snoopy-decor">
+
+</div>
+
+<script>
+
+function checkPass(){
+let pass=document.getElementById("pass").value;
+
+if(pass==="270825"){
+nextPage(2)
+}else{
+alert("Wrong password!")
+}
+}
+
+function nextPage(num){
+document.querySelectorAll(".page").forEach(p=>{
+p.classList.remove("active")
+})
+
+document.getElementById("page"+num).classList.add("active")
+}
+
+function yesAnswer(){
+nextPage(5)
+}
+
+let noBtn=document.getElementById("noBtn")
+
+noBtn.addEventListener("mouseover",function(){
+let x=Math.random()*window.innerWidth
+let y=Math.random()*window.innerHeight
+
+noBtn.style.left=x+"px"
+noBtn.style.top=y+"px"
+})
+
+/* CONFETTI */
+
+for(let i=0;i<50;i++){
+let conf=document.createElement("div")
+conf.classList.add("confetti")
+conf.style.left=Math.random()*100+"vw"
+conf.style.animationDuration=(Math.random()*3+2)+"s"
+document.body.appendChild(conf)
+}
+
+/* STARS */
+
+let stars=document.getElementById("stars")
+
+for(let i=0;i<150;i++){
+let star=document.createElement("span")
+star.style.top=Math.random()*100+"vh"
+star.style.left=Math.random()*100+"vw"
+stars.appendChild(star)
+}
+
+</script>
+
+</body>
+</html>
